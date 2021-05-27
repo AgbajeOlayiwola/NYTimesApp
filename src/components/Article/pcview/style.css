@@ -1,0 +1,24 @@
+.ArticlePC_Component{
+    display: block;
+    text-align: center;
+    transition: box-shadow .3s;
+    margin-left: 10%;
+    border: 1px solid #ccc;
+    border-top: 0px;
+    border-left: 0px;
+    margin-top:5%;
+    margin-bottom: 10%;
+    border-radius:10px;
+}
+.ArticlePC_Component:hover {
+    box-shadow: 9px 7px 11px rgba(33,33,33,.2); 
+    cursor: pointer;
+  }
+.ArticlePC_Image{
+    border-radius: 5px;
+}
+.ArticlePC_Title{
+    margin-top: 6%;
+text-decoration: none;
+color: black;
+}

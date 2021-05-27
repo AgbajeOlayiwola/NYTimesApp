@@ -1,0 +1,75 @@
+@media only screen and (min-width: 150px) and (max-width: 750px){
+	.component{
+		display: block;
+	}
+	.article-component.media {
+        padding: 10px;
+        background-color: #ffffff;
+        display: flex;
+        border-radius: 4px;
+        box-shadow: 4px 7px 4px #d3d3d3;
+        margin-left: 0%;
+        margin-bottom: 10%;
+        margin-top: 5%;
+
+	&:hover {
+		background-color: #ddd;
+		transition-delay: 0.1s;
+	}
+}
+
+.media-left {
+	align-self: center;
+
+	img {
+		border-radius: 6px;
+		height: 50px;
+		object-fit: cover;
+	}
+}
+
+.date {
+	float: right;
+	display: flex;
+	color: #666666;
+	font-size: 14px;
+	margin-left: 0.3em;
+	margin-top: 0px;
+
+	svg {
+		margin-right: 0.3em;
+		margin-top: 0.2em;
+		fill: #666666;
+	}
+}
+
+.media-body {
+	padding: 10px;
+	padding: 10px;
+	margin-top: 2%;
+}
+
+
+.right-svg {
+	align-self: center;
+	padding-right: 0.1em;
+	padding-left: 0.7em;
+	display: flex;
+
+	svg {
+		fill: #666666;
+	}
+}
+
+.media-heading {
+	font-size: 15px;
+	font-weight: bold;
+	color: #222222;
+}
+
+.by-line { 
+	color: #666666;
+	display: inline;
+	font-size: 14px;
+}
+}
