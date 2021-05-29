@@ -9,7 +9,9 @@ import './Article.scss'
  * @param {*} props
  * @returns {JSX} JSX element
  */
-function ArticleComponent(props) {
+
+export function ArticleComponent (props)  {
+
   return (
 	  <div>
 		<Link to={`${props.id}`}>

@@ -1,107 +1,87 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react'
 import { Route } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
 import './App.scss';
 import { AppHeader } from '../common/AppHeader.js'
 import { AppFooter } from '../common/AppFooter.js';
 import { ArticleDetails } from '../ArticleDetails/mobileview/ArticleDetails.js';
-import Decider from '../ArticleList';
-import { ArticleListPc } from '../ArticleList/pcview';
 import { ArticleList } from '../ArticleList/mobileview/ArticleList';
 
-/**
- *
- * @class App
- * @extends {Component}
- */
+function App() {
 
-let limit = 800; 
-console.log(limit)
-
-class App extends Component {
-
-state = { articles: [], isLoading: false }
-
-/**
-*
-* @memberof App
-*/
-constructor(props) {
-  super(props);
-  this.state = { width: 0, height: 0 };
-  this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-}
+  let [articles, setArticles] = useState(null);
+  const [size, setSize] = useState(window.innerWidth);
+  const [isLoading, setIsLoading ] = useState(true)
+ 
 
 
-async componentDidMount() {
-this.setState({ isLoading: true });
-this.updateWindowDimensions();
-window.addEventListener('resize', this.updateWindowDimensions);
+  const loadAsyncData = async () => {
+  
+    setIsLoading(true);
+    
+    try {
+      const response = await fetch('https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/7.json?api-key=MJ4FfwRcFW2UD0b72IBaFxA0aFMnRafp')
+      const data = await response.json();
+      const item = data.results;
+      setArticles(item);
+      setIsLoading(false);
+    } catch(e) {
+      setIsLoading(false);
+      setArticles();
+    }
+    
+  }
+useEffect(async() => {
+  setIsLoading(true);
+  loadAsyncData();
 
+  //api call in useEffect hook
+  /*const response = await fetch('https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/7.json?api-key=MJ4FfwRcFW2UD0b72IBaFxA0aFMnRafp')
+  const data = await response.json();
+  const item = data.results;
+  
+  setArticles(item);
+  setIsLoading(false)*/
 
-try {
-  const response = await axios.get('https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/7.json?api-key=MJ4FfwRcFW2UD0b72IBaFxA0aFMnRafp')
-  this.setState({ articles: response.data.results, isLoading: false });
+//size thing
+  const handleResize=()=>{
+  setSize(window.innerWidth)
+  return ()=>{
+    window.removeEventListener('resize', handleResize)
+  }
+  }
+  window.addEventListener('resize', handleResize)
+}, []);
 
-} catch (error) {
-  this.setState({ articles: [], isLoading: false });
-}
-}
-
-componentWillUnmount() {
-  window.removeEventListener('resize', this.updateWindowDimensions);
-}
-
-updateWindowDimensions() {
-  this.setState({ width: window.innerWidth, height: window.innerHeight });
-}
-
-
-
-
-render() {
-const { articles, isLoading } = this.state;
-const { width } = this.state; 
-console.log(width)
-
+const breakpoint = 600;
+console.log(size)
+console.log(breakpoint)
+console.log(isLoading)
 return (
-  <div className="App">
-    <AppHeader />
-    {isLoading ? (<div className="text-center spinner-dark">
+    <div>
+   <AppHeader />
+   {isLoading ? (<div className="text-center spinner-dark">
       <Spinner color="dark" />
-    </div>) :
-      [(limit >= width )?
+    </div>) : 
+      [
         <Route
           key="article-list-router"
           exact
           path='/'
-          render={() => <ArticleList articles={articles} />}
-        />:
-        <Route
-          key="article-list-router"
-          exact
-          path='/'
-          render={() => <ArticleListPc articles={articles} />}
-        />,
+          render={() => <ArticleList articles={articles} size={size} />}
+      />,
         <Route
           key="article-router"
           exact
           path='/:articleId'
-          render={(matchProps) => <ArticleDetails articles={articles} {...matchProps} />}
-        />,
-        <Route
-        key='decider box'
-          exact
-          path='/:articleId'
-          render={(matchProps) => <Decider articles={articles} {...matchProps} />}
-        /> 
+          render={(matchProps) => <ArticleDetails articles={articles} {...matchProps} size={size}/>}
+        />
       ]
     }
-    <AppFooter />
-  </div>
-);
-}
+    <AppFooter />  
+    </div>
+  );
 }
 
-export default App;
+
+export default App

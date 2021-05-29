@@ -1,0 +1,16 @@
+.pcView{
+    display: block;
+}
+.pcView_main{
+    width: 80%;
+    margin-left: 10%;
+}
+.pcView_prev-next{
+display: flex;
+justify-content: space-between;
+color: #343a40;
+}
+.pcView_detail-small-text{
+    display: flex;
+    justify-content: space-between;
+}

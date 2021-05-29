@@ -15,7 +15,7 @@ export default function Decider() {
         }
         window.addEventListener('resize', handleResize)
       },[])
-      console.log("Decider_Size",size)
+      console.log(size)
       
     return (
         <div>    
