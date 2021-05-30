@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Card, CardBody, CardTitle, CardText, CardImg, Row, Col } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardText, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import { NotFound } from '../../common/NotFound';

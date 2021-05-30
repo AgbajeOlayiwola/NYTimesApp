@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
  * @param {*} props
  * @returns {JSX} JSX element
  */
+    
+
+
 function ArticlePc(props) {
 
     return (

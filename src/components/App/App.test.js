@@ -3,7 +3,12 @@ import { shallow } from 'enzyme';
 import axios from 'axios';
 
 import App from './App';
-
+useEffect(() => {
+	effect
+	return () => {
+		cleanup
+	}
+}, [input])
 
 describe('App', () => {
 	let wrapper;
