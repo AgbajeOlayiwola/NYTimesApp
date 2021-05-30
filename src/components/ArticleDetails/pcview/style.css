@@ -14,3 +14,9 @@ color: #343a40;
     display: flex;
     justify-content: space-between;
 }
+.pcView_imgDiv{
+    margin-top:20px;
+}
+.pcView_img-responsive{
+    width: 90%;
+}

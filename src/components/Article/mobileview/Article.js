@@ -17,7 +17,7 @@ export function ArticleComponent (props)  {
 		<Link to={`${props.id}`}>
 			<Media className="article-component">
 				<Media left>
-					<img src={props.media[0]['media-metadata'][1].url} alt="airticleImage" />
+					<img src={props.media[0]['media-metadata'][2].url} alt="airticleImage" />
 				</Media>
 				<Media body>
 					<Media heading>

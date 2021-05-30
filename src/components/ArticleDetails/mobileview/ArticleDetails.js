@@ -19,13 +19,15 @@ const bp = 830;
 
 	const { articleId } = props.match.params;
 
-	const articleIndex = props.articles.findIndex(article => Number(article.id) === Number(articleId));
-
-	
+	const articleIndex = props.articles.findIndex(article => Number(article.id)
+	 === Number(articleId));
+ 
 	if (articleIndex === -1) {
 		return <NotFound />
 	}
 	const article = props.articles[articleIndex];
+	console.log(article)
+
 	return (
 		(origSize <= bp) ?
 		(<div className='int'>
@@ -33,14 +35,17 @@ const bp = 830;
 				<Row>
 					<Col sm={6} xs={12} lg={4}>
 					<img
-					src={article.media.url} 
+					src={article.media[0]['media-metadata'][2].url} 
 					className='img-responsive'
 					top 
 					alt="airticleImage" 
 					/>
+					
 					</Col>
+					
 					<Col sm={6} xs={12} lg={8}>
 						<CardBody>
+							
 							<CardTitle>{article.title}</CardTitle>
 							<CardText>{article.abstract}</CardText>
 							<a href={article.url} target="_blank" rel="noopener noreferrer">
@@ -64,8 +69,8 @@ const bp = 830;
 									className="prev-link"
 									to={`/${props.articles[articleIndex - 1].id}`}
 								>
+								Previous Article
 									<i className="fa fa-chevron-left prev-next"></i>
-									Previous Article
 								</Link>
 							}
 							{articleIndex < props.articles.length - 1 &&
@@ -89,11 +94,11 @@ const bp = 830;
 		(<div className="pcView">
 		<div>
 			<div className='pcView_main'>
-				<div>
+				<div className='pcView_imgDiv'>
 					<img 
 						className='pcView_img-responsive'
-						top 
-						src={article.media[0]['media-metadata'][4]} 
+						
+						src={article.media[0]['media-metadata'][2].url} 
 						alt="airticleImage" 
 					/>
 				</div>
@@ -107,14 +112,14 @@ const bp = 830;
 								<i className="fa fa-chevron-right img-responsive"></i>
 							</CardText>
 						</a>
-						<CardText className="pcView_detail-small-text">
+						<div className="pcView_detail-small-text">
 							<small className="pcView_text-muted left-detail">
 								{article.byline}
 							</small>
 							<small className="pcView_text-muted pcView_right-detail">
 								{article.published_date}
 							</small>
-						</CardText>	
+						</div>	
 					</CardBody>
 					<div className="pcView_prev-next">
 						{articleIndex >= 1 &&
