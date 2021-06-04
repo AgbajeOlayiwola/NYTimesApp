@@ -16,9 +16,6 @@ function ArticlePc(props) {
         <div className='ArticlePC_Component'>
             <Link to={`/${props.id}`}>
                 <div>
-                    <img src={props.media[0]['media-metadata'][1].url} 
-                    alt='article_MainImage' 
-                    className='ArticlePC_Image'/>
                 </div>
                 <div>
                    <p  className='ArticlePC_Title'> {props.title}</p>

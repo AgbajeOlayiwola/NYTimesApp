@@ -12,23 +12,26 @@ import '../pcview/style.css'
  * @returns {JSX} JSX element
  */
 function ArticleDetailsComponent(props) {
-console.log('articleDetails', props.size)
+//console.log('articleDetails', props.size)
 const origSize = props.size;
 const bp = 830;
 
-
+//srticleid saved the id of the article
 	const { articleId } = props.match.params;
-
-	const articleIndex = props.articles.findIndex(article => Number(article.id)
-	 === Number(articleId));
- 
+	//findindex method loops through the articles array to find id and match them
+	const articleIndex = props.articles.findIndex(article => Number(article.id)=== Number(articleId));
+ //if article index is less than 1 show the not found component
 	if (articleIndex === -1) {
-		return <NotFound />
+		return(<NotFound />)
 	}
+
+	//article holds all the arrayresuts of article index
 	const article = props.articles[articleIndex];
-	console.log(article)
+	console.log('froArticleDetails',article)
+	console.log('froArticleDetails',articleIndex)
 
 	return (
+		//Ternary to make display decision
 		(origSize <= bp) ?
 		(<div className='int'>
 			<Card>

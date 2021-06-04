@@ -10,11 +10,11 @@ export const ArticleList = memo(function ArticleList({ articles, size}){
   if (!Array.isArray(articles) || articles.length === 0) {
     return (<NotFound />)
   }
-  console.log('Article List Size', size)
   return (
+    /*ternary operator to render ui based on screen size */
     (size <= 600 ?
     <>
-    {articles.map(article => (<div key={article.id}>
+    {articles.map(article => (<div /*unique keys */key={article.id}>
       <Article { ...article } />
     </div>))}
     </>

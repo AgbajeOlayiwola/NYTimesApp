@@ -9,16 +9,16 @@ import './Article.scss'
  * @param {*} props
  * @returns {JSX} JSX element
  */
-
+//props gives us acces to to articles 
 export function ArticleComponent (props)  {
 
   return (
 	  <div>
 		<Link to={`${props.id}`}>
 			<Media className="article-component">
-				<Media left>
+				{/*<Media left>
 					<img src={props.media[0]['media-metadata'][2].url} alt="airticleImage" />
-				</Media>
+				</Media>*/}
 				<Media body>
 					<Media heading>
 						{props.title}
@@ -48,5 +48,5 @@ export function ArticleComponent (props)  {
 		</div>
   );
 };
-
+//memo helps reduce number of renders helps to optimise the app
 export const Article = memo(ArticleComponent);
